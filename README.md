@@ -69,38 +69,43 @@ We can see the problem here. There are so many hardcode things and duplicate cod
     self.viewModel = [[YZSTableViewModel alloc] init];
     self.tableView.delegate = self.viewModel;
     self.tableView.dataSource = self.viewModel;
-    [self initDataSource];
+    [self initViewModel];
     [self.tableView reloadData];
 }
-- (void)initDataSource {
-    ...
+- (void)initViewModel {
     [self.viewModel.sectionModelArray removeAllObjects];
-    YZWeak(self);
-    // store info section
+    [self.viewModel.sectionModelArray addObject:[self storeInfoSection]];
+    if (self.type == MemberTypeManager) {
+        [self.viewModel.sectionModelArray addObject:[self advancedSettinsSection]];
+    }
+    [self.viewModel.sectionModelArray addObject:[self incomeInfoSection]];
+    [self.viewModel.sectionModelArray addObject:[self otherSection]];
+}
+- (YZSTableViewSectionModel*)storeInfoSection {
     YZSTableViewSectionModel *sectionModel = [[YZSTableViewSectionModel alloc] init];
-    [self.viewModel.sectionModelArray addObject:sectionModel];
     ...
+    // store info cell
     YZSTableViewCellModel *cellModel = [[YZSTableViewCellModel alloc] init];
     [sectionModel.cellModelArray addObject:cellModel];
     cellModel.height = 80;
     cellModel.renderBlock = ^UITableViewCell *(NSIndexPath *indexPath, UITableView *tableView) {
         ...
-        return cell;
     };
     if (self.type == MemberTypeManager) {
-        // product list entry
+        // product list cell
         YZSTableViewCellModel *cellModel = [[YZSTableViewCellModel alloc] init];
         [sectionModel.cellModelArray addObject:cellModel];
         cellModel.renderBlock = ^UITableViewCell *(NSIndexPath *indexPath, UITableView *tableView) {
             ...
-            return cell;
         };
         cellModel.selectionBlock = ^(NSIndexPath *indexPath, UITableView *tableView) {
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
             ...
         };
     }
-    ...
+    return sectionModel;
 }
+...
 ```
 Take a look at the code in the *GoodTableViewController* in the demo for more details.  
 

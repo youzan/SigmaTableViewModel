@@ -10,6 +10,10 @@
 #import "YZSTableViewModel.h"
 #import "YZWeakDefine.h"
 
+static NSString *Identify_CellWithImage = @"CellWithImage";
+static NSString *Identify_EntryCell = @"EntryCell";
+static NSString *Identify_CellWithBigFont = @"CellWithBigFont";
+
 @interface GoodTableViewController ()
 
 @property (nonatomic, strong) YZSTableViewModel *viewModel;
@@ -20,28 +24,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     self.viewModel = [[YZSTableViewModel alloc] init];
     self.tableView.delegate = self.viewModel;
     self.tableView.dataSource = self.viewModel;
-    [self initDataSource];
+    [self initViewModel];
     [self.tableView reloadData];
 }
 
-- (void)initDataSource {
-    static NSString *Identify_CellWithImage = @"CellWithImage";
-    static NSString *Identify_EntryCell = @"EntryCell";
-    static NSString *Identify_CellWithBigFont = @"CellWithBigFont";
-
+- (void)initViewModel {
     [self.viewModel.sectionModelArray removeAllObjects];
+    [self.viewModel.sectionModelArray addObject:[self storeInfoSection]];
+    if (self.type == MemberTypeManager) {
+        [self.viewModel.sectionModelArray addObject:[self advancedSettinsSection]];
+    }
+    [self.viewModel.sectionModelArray addObject:[self incomeInfoSection]];
+    [self.viewModel.sectionModelArray addObject:[self otherSection]];
+}
+
+- (YZSTableViewSectionModel*)storeInfoSection {
     YZWeak(self);
-    // store info section
     YZSTableViewSectionModel *sectionModel = [[YZSTableViewSectionModel alloc] init];
-    [self.viewModel.sectionModelArray addObject:sectionModel];
     sectionModel.headerTitle = @"Store Info";
     sectionModel.headerHeight = 40;
     sectionModel.footerHeight = 0.1;
-    // store info
+    // store info cell
     YZSTableViewCellModel *cellModel = [[YZSTableViewCellModel alloc] init];
     [sectionModel.cellModelArray addObject:cellModel];
     cellModel.height = 80;
@@ -70,7 +76,7 @@
         return cell;
     };
     if (self.type == MemberTypeManager) {
-        // product list entry
+        // product list cell
         YZSTableViewCellModel *cellModel = [[YZSTableViewCellModel alloc] init];
         [sectionModel.cellModelArray addObject:cellModel];
         cellModel.renderBlock = ^UITableViewCell *(NSIndexPath *indexPath, UITableView *tableView) {
@@ -89,73 +95,75 @@
             [self showAlertWithTitle:@"" andMessage:@"Entry to show product list"];
         };
     }
+    return sectionModel;
+}
 
-    // advanced settings section
-    if (self.type == MemberTypeManager) {
-        YZSTableViewSectionModel *sectionModel = [[YZSTableViewSectionModel alloc] init];
-        [self.viewModel.sectionModelArray addObject:sectionModel];
-        sectionModel.headerTitle = @"Advanced Settings";
-        sectionModel.headerHeight = 40;
-        sectionModel.footerHeight = 0.1;
-        // store decoration
-        YZSTableViewCellModel *cellModel = [[YZSTableViewCellModel alloc] init];
-        [sectionModel.cellModelArray addObject:cellModel];
-        cellModel.renderBlock = ^UITableViewCell *(NSIndexPath *indexPath, UITableView *tableView) {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identify_EntryCell];
-            if (!cell) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                              reuseIdentifier:Identify_EntryCell];
-                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            }
-            cell.textLabel.text = @"Store Decoration";
-            return cell;
-        };
-        cellModel.selectionBlock = ^(NSIndexPath *indexPath, UITableView *tableView) {
-            [tableView deselectRowAtIndexPath:indexPath animated:YES];
-            YZStrong(self);
-            [self showAlertWithTitle:@"" andMessage:@"Entry to do store decoration"];
-        };
-        // Store location
-        cellModel = [[YZSTableViewCellModel alloc] init];
-        [sectionModel.cellModelArray addObject:cellModel];
-        cellModel.renderBlock = ^UITableViewCell *(NSIndexPath *indexPath, UITableView *tableView) {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identify_EntryCell];
-            if (!cell) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                              reuseIdentifier:Identify_EntryCell];
-                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            }
-            cell.textLabel.text = @"Store Location";
-            return cell;
-        };
-        cellModel.selectionBlock = ^(NSIndexPath *indexPath, UITableView *tableView) {
-            [tableView deselectRowAtIndexPath:indexPath animated:YES];
-            YZStrong(self);
-            [self showAlertWithTitle:@"" andMessage:@"Entry to set store location"];
-        };
-        // Open Time
-        cellModel = [[YZSTableViewCellModel alloc] init];
-        [sectionModel.cellModelArray addObject:cellModel];
-        cellModel.renderBlock = ^UITableViewCell *(NSIndexPath *indexPath, UITableView *tableView) {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identify_EntryCell];
-            if (!cell) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                              reuseIdentifier:Identify_EntryCell];
-                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            }
-            cell.textLabel.text = @"Open Time";
-            return cell;
-        };
-        cellModel.selectionBlock = ^(NSIndexPath *indexPath, UITableView *tableView) {
-            [tableView deselectRowAtIndexPath:indexPath animated:YES];
-            YZStrong(self);
-            [self showAlertWithTitle:@"" andMessage:@"Entry to set store open time"];
-        };
-    }
+- (YZSTableViewSectionModel*)advancedSettinsSection {
+    YZWeak(self);
+    YZSTableViewSectionModel *sectionModel = [[YZSTableViewSectionModel alloc] init];
+    sectionModel.headerTitle = @"Advanced Settings";
+    sectionModel.headerHeight = 40;
+    sectionModel.footerHeight = 0.1;
+    // store decoration
+    YZSTableViewCellModel *cellModel = [[YZSTableViewCellModel alloc] init];
+    [sectionModel.cellModelArray addObject:cellModel];
+    cellModel.renderBlock = ^UITableViewCell *(NSIndexPath *indexPath, UITableView *tableView) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identify_EntryCell];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                          reuseIdentifier:Identify_EntryCell];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+        cell.textLabel.text = @"Store Decoration";
+        return cell;
+    };
+    cellModel.selectionBlock = ^(NSIndexPath *indexPath, UITableView *tableView) {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        YZStrong(self);
+        [self showAlertWithTitle:@"" andMessage:@"Entry to do store decoration"];
+    };
+    // Store location
+    cellModel = [[YZSTableViewCellModel alloc] init];
+    [sectionModel.cellModelArray addObject:cellModel];
+    cellModel.renderBlock = ^UITableViewCell *(NSIndexPath *indexPath, UITableView *tableView) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identify_EntryCell];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                          reuseIdentifier:Identify_EntryCell];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+        cell.textLabel.text = @"Store Location";
+        return cell;
+    };
+    cellModel.selectionBlock = ^(NSIndexPath *indexPath, UITableView *tableView) {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        YZStrong(self);
+        [self showAlertWithTitle:@"" andMessage:@"Entry to set store location"];
+    };
+    // Open Time
+    cellModel = [[YZSTableViewCellModel alloc] init];
+    [sectionModel.cellModelArray addObject:cellModel];
+    cellModel.renderBlock = ^UITableViewCell *(NSIndexPath *indexPath, UITableView *tableView) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identify_EntryCell];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                          reuseIdentifier:Identify_EntryCell];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+        cell.textLabel.text = @"Open Time";
+        return cell;
+    };
+    cellModel.selectionBlock = ^(NSIndexPath *indexPath, UITableView *tableView) {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        YZStrong(self);
+        [self showAlertWithTitle:@"" andMessage:@"Entry to set store open time"];
+    };
+    return sectionModel;
+}
 
-    // order and income section
-    sectionModel = [[YZSTableViewSectionModel alloc] init];
-    [self.viewModel.sectionModelArray addObject:sectionModel];
+- (YZSTableViewSectionModel*)incomeInfoSection {
+    YZWeak(self);
+    YZSTableViewSectionModel *sectionModel = [[YZSTableViewSectionModel alloc] init];
     sectionModel.headerTitle = @"Income Info";
     sectionModel.headerHeight = 40;
     sectionModel.footerHeight = 0.1;
@@ -183,7 +191,7 @@
         };
     }
     // orders
-    cellModel = [[YZSTableViewCellModel alloc] init];
+    YZSTableViewCellModel *cellModel = [[YZSTableViewCellModel alloc] init];
     [sectionModel.cellModelArray addObject:cellModel];
     cellModel.renderBlock = ^UITableViewCell *(NSIndexPath *indexPath, UITableView *tableView) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identify_EntryCell];
@@ -218,15 +226,17 @@
         YZStrong(self);
         [self showAlertWithTitle:@"" andMessage:@"Entry to see Income"];
     };
+    return sectionModel;
+}
 
-    // Other section
-    sectionModel = [[YZSTableViewSectionModel alloc] init];
-    [self.viewModel.sectionModelArray addObject:sectionModel];
+- (YZSTableViewSectionModel*)otherSection {
+    YZWeak(self);
+    YZSTableViewSectionModel *sectionModel = [[YZSTableViewSectionModel alloc] init];
     sectionModel.headerTitle = @"Other";
     sectionModel.headerHeight = 40;
     sectionModel.footerHeight = 40;
     // about
-    cellModel = [[YZSTableViewCellModel alloc] init];
+    YZSTableViewCellModel *cellModel = [[YZSTableViewCellModel alloc] init];
     [sectionModel.cellModelArray addObject:cellModel];
     cellModel.renderBlock = ^UITableViewCell *(NSIndexPath *indexPath, UITableView *tableView) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identify_EntryCell];
@@ -243,6 +253,6 @@
         YZStrong(self);
         [self showAlertWithTitle:@"" andMessage:@"Entry to see about info"];
     };
+    return sectionModel;
 }
-
 @end
