@@ -6,9 +6,10 @@ SigmaTableViewModel is a lightweight view model to help to implement tableview U
 
 ## SigmaTableViewModel vs UITableViewDataSource+UITableViewDelegate
 Apple provides the UITableViewDataSource & UITableViewDelegate to implement the tableview UI but a big problem is that the UI logic exists in multiple places and there will be lots of duplicate code.  
-e.g. A store management UI like this:
-![alt tag](http://url/to/img.png)
-2 kinds of users will use this UI, manager and employee. Manager can see more rows, like ..., and employee can only see ...
+e.g. Let's take a look at a store management UI like this:
+![](https://github.com/youzan/SigmaTableViewModel/blob/master/images/manager.png)
+There are 2 kinds of users will use this UI, manager and employee. Manager can see all above rows, and employee can only see some of them, like
+![](https://github.com/youzan/SigmaTableViewModel/blob/master/images/employee.png)
 In traditional way, we may need to implement the UI like this:
 ```objective-c
 #pragma mark - UITableViewDataSource
@@ -105,6 +106,13 @@ If we want to move the *Withdraw* row to the 3rd row in that section, what we ne
 
  1. Create an instance of the SigmaTableViewModel and use it as the tableview's delegate and datasource.
  2. Create the *sectionModelArray* for the view model instance.
+
+ ## Installation
+ ### CocoaPods
+ Coming soon...
+
+ ### Use the source code directly
+ You can also download the project and copy all files in the *Lib* folder to your project.
 
 ## More Discussions
 

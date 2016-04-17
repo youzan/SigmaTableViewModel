@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8782F1801B8C1193004F608C"
-               BuildableName = "SmartTableViewModel.app"
+               BuildableName = "SigmaTableViewModel.app"
                BlueprintName = "SigmaTableViewModel"
                ReferencedContainer = "container:SigmaTableViewModel.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8782F1801B8C1193004F608C"
-            BuildableName = "SmartTableViewModel.app"
+            BuildableName = "SigmaTableViewModel.app"
             BlueprintName = "SigmaTableViewModel"
             ReferencedContainer = "container:SigmaTableViewModel.xcodeproj">
          </BuildableReference>
@@ -56,7 +56,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8782F1801B8C1193004F608C"
-            BuildableName = "SmartTableViewModel.app"
+            BuildableName = "SigmaTableViewModel.app"
             BlueprintName = "SigmaTableViewModel"
             ReferencedContainer = "container:SigmaTableViewModel.xcodeproj">
          </BuildableReference>
@@ -75,7 +75,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8782F1801B8C1193004F608C"
-            BuildableName = "SmartTableViewModel.app"
+            BuildableName = "SigmaTableViewModel.app"
             BlueprintName = "SigmaTableViewModel"
             ReferencedContainer = "container:SigmaTableViewModel.xcodeproj">
          </BuildableReference>

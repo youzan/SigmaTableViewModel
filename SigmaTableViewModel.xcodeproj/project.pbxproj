@@ -83,7 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				8782F1AA1B8C11E1004F608C /* Demo */,
-				8782F1831B8C1193004F608C /* SigmaTableViewModel */,
+				8782F1831B8C1193004F608C /* Lib */,
 				8782F19D1B8C1193004F608C /* SigmaTableViewModelTests */,
 				8782F1821B8C1193004F608C /* Products */,
 			);
@@ -98,7 +98,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8782F1831B8C1193004F608C /* SigmaTableViewModel */ = {
+		8782F1831B8C1193004F608C /* Lib */ = {
 			isa = PBXGroup;
 			children = (
 				8782F1C01B8C132D004F608C /* YZSTableViewModel.h */,
@@ -108,7 +108,7 @@
 				8782F1C61B8C1362004F608C /* YZSTableViewCellModel.h */,
 				8782F1C71B8C1362004F608C /* YZSTableViewCellModel.m */,
 			);
-			path = SigmaTableViewModel;
+			path = Lib;
 			sourceTree = "<group>";
 		};
 		8782F19D1B8C1193004F608C /* SigmaTableViewModelTests */ = {
@@ -392,6 +392,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.qima.kdt.SigmaTableViewModel;
 				PRODUCT_NAME = SigmaTableViewModel;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -403,6 +404,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.qima.kdt.SigmaTableViewModel;
 				PRODUCT_NAME = SigmaTableViewModel;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
