@@ -106,7 +106,7 @@ Take a look at the code in the *GoodTableViewController* in the demo for more de
 
 
 ## Exercise
-If we want to move the *Withdraw* row to the 3rd row in that section, what we need to do in traditional way and in SigmaTableViewModel way? What if we what to hide the *Income* row for employee? 
+If we want to move the *Withdraw* row to the 3rd row in that section, what do we need to do in traditional way? And how about in SigmaTableViewModel way? What if we what to hide the *Income* row for employee? 
 
 ## Usage 
 2 steps to use the SigmaTableViewModel.
