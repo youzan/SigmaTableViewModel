@@ -5,17 +5,17 @@
 SigmaTableViewModel is a lightweight view model to help to implement the tableview UI, especially those complex tableviews with different types of cells and dynamic logic.
 
 ## SigmaTableViewModel vs UITableViewDataSource + UITableViewDelegate
-Apple provides the UITableViewDataSource & UITableViewDelegate to implement the tableview UI but a big problem is that the UI logic exists in multiple places and there will be lots of duplicate code.  
+Apple provides the UITableViewDataSource & UITableViewDelegate to implement the tableview UI, but a big problem is that the UI logic exists in multiple places and there will be lots of duplicate code.  
 e.g. Let's take a look at a store management UI like this:
 
 <img src="https://github.com/youzan/SigmaTableViewModel/blob/master/images/manager.png" width="300">
 
-There are 2 kinds of users will use this UI, manager and employee. Manager can see all above rows, and employee can only see some of them, like
+2 kinds of users will use this UI, manager and employee. Manager can see all above rows, and employee can only see some of them, like
 
 <img src="https://github.com/youzan/SigmaTableViewModel/blob/master/images/employee.png" width="300">
 
 
-In traditional way, we may need to implement the UI like this:
+In the traditional way, we may implement the UI like this:
 ```objective-c
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -61,7 +61,7 @@ There will be more *if else* code in the rest datasrouce & delegate methods, esp
 
 We can see the problem here. There are so many hardcode things and duplicate code. What we need is to use a model to hold all the logic and only use the model in these delegate & datasource methods.  That is what the *SigmaTableViewModel* does.
 
-*SigmaTableViewModel* provides an depth 2 array ***sectionModelArray***. The 1st level is the section, and 2nd level is row. So what we need is to create this array and tell tableview to use it, like this:
+*SigmaTableViewModel* provides the ***YZSTableViewModel*** as the view model and a depth 2 array ***sectionModelArray*** in it. The 1st level of the array is the section, and the 2nd level is the row. So what we need is to construct this array and ask tableview to use it, like this:
 
 ```objective-c
 - (void)viewDidLoad {
@@ -111,13 +111,13 @@ Take a look at the code in the *GoodTableViewController* in the demo for more de
 
 
 ## Exercise
-If we want to move the *Withdraw* row to the 3rd row in that section, what do we need to do in traditional way? And how about in SigmaTableViewModel way? What if we what to hide the *Income* row for employee? 
+If we want to move the *Withdraw* row to the 3rd row in that section, what do we need to do in the traditional way? And how about in SigmaTableViewModel way? What if we what to hide the *Income* row for employee? 
 
 ## Usage 
 2 steps to use the SigmaTableViewModel.
 
- 1. Create an instance of the SigmaTableViewModel and use it as the tableview's delegate and datasource.
- 2. Create the *sectionModelArray* for the view model instance.
+ 1. Create an instance of the ***YZSTableViewModel*** and use it as the tableview's delegate and datasource.
+ 2. Construct the ***sectionModelArray*** for the view model instance.
 
 ## Installation
 ### CocoaPods
@@ -127,10 +127,9 @@ Coming soon...
 You can also download the project and copy all files in the *Lib* folder to your project.
 
 ## More Discussions
- - SigmaTableViewModel only provides some frequently used functions of UITableViewDataSource & UITableViewDelegate. If you needs more functions, you can subclass it and provide the implementation for those functions. 
- - If we put all code to generate the sectionModelArray in the same method, the method will be very long. So we can put the code to generate different sections in different methods like the demo. 
+ - SigmaTableViewModel only provides some frequently used functions of UITableViewDataSource & UITableViewDelegate. If you needs more functions, you can subclass *YZSTableViewModel* and provide the implementation for those functions. 
  - If the code in those cell's blocks can be reused,  we can put them in some methods and only invoke these methods in those blocks.
- - The block is used frequently in the view model so we have to be careful of the retain cycle. Always use weak-strong dance for safe. In the demo, we use **YZWeak** & **YZStrong** macros to simplify the weak-strong dance code.
+ - The block is used frequently in the view model so we have to be careful about the retain cycle. Always use weak-strong dance for safe. In the demo, we use **YZWeak** & **YZStrong** macros to simplify the weak-strong dance code.
 
 ## License
 MIT 
