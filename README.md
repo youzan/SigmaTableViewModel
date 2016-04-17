@@ -2,15 +2,21 @@
 
 ## Description
 
-SigmaTableViewModel is a lightweight view model to help to implement tableview UI, especially those complex tableviews with different types of cells and dynamic logic.
+SigmaTableViewModel is a lightweight view model to help to implement the tableview UI, especially those complex tableviews with different types of cells and dynamic logic.
 
-## SigmaTableViewModel vs UITableViewDataSource+UITableViewDelegate
+## SigmaTableViewModel vs UITableViewDataSource + UITableViewDelegate
 Apple provides the UITableViewDataSource & UITableViewDelegate to implement the tableview UI but a big problem is that the UI logic exists in multiple places and there will be lots of duplicate code.  
 e.g. Let's take a look at a store management UI like this:
-![](https://github.com/youzan/SigmaTableViewModel/blob/master/images/manager.png)
+
+<img src="https://github.com/youzan/SigmaTableViewModel/blob/master/images/manager.png" width="300">
+
 There are 2 kinds of users will use this UI, manager and employee. Manager can see all above rows, and employee can only see some of them, like
-![](https://github.com/youzan/SigmaTableViewModel/blob/master/images/employee.png)
+
+<img src="https://github.com/youzan/SigmaTableViewModel/blob/master/images/employee.png" width="300">
+
+
 In traditional way, we may need to implement the UI like this:
+
 ```objective-c
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -107,18 +113,19 @@ If we want to move the *Withdraw* row to the 3rd row in that section, what we ne
  1. Create an instance of the SigmaTableViewModel and use it as the tableview's delegate and datasource.
  2. Create the *sectionModelArray* for the view model instance.
 
- ## Installation
- ### CocoaPods
- Coming soon...
+## Installation
+### CocoaPods
+Coming soon...
 
- ### Use the source code directly
- You can also download the project and copy all files in the *Lib* folder to your project.
+### Use the source code directly
+You can also download the project and copy all files in the *Lib* folder to your project.
 
 ## More Discussions
 
  - SigmaTableViewModel only provides some frequently used functions of UITableViewDataSource & UITableViewDelegate. If you needs more functions, you can subclass it and provide the implementation for those functions. 
  - If we put all code to generate the sectionModelArray in the same method, the method will be very long. So we can put the code to generate different sections in different methods like in the demo. 
  - If the code in those cell's blocks can be reused,  we can put them in some methods and only invoke these methods in those blocks.
+ - The block is used frequently in the view model so we have to be careful of the retain cycle. Always use weak-strong dance for safe. In the demo, we use **YZWeak** & **YZStrong** macros to simplify the weak-strong dance code.
 
 ## License
 MIT 
