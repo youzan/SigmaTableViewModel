@@ -16,7 +16,6 @@ There are 2 kinds of users will use this UI, manager and employee. Manager can s
 
 
 In traditional way, we may need to implement the UI like this:
-
 ```objective-c
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -32,7 +31,6 @@ In traditional way, we may need to implement the UI like this:
             break;
     }
 }
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
         if (self.type == MemberTypeEmployee) {
@@ -59,11 +57,9 @@ In traditional way, we may need to implement the UI like this:
 ... 
 ```
 
-There will be more ***if else*** code in the rest datasrouce & delegate methods, especially in the ***tableView:cellForRowAtIndexPath:*** method. Take a look at the code in class ***BadTableViewController*** for more details. 
-
-We can see the problem here. There are so many hardcode things and duplicate logic & code. What we need is to use a model to hold all the logic and only use the model in these delegate & datasource methods.  That is what the ***SigmaTableViewModel*** does.
-
-SigmaTableViewModel provides an depth 2 array ***sectionModelArray***. The 1st level is the section, and 2nd level is row. So what we need is to create this array and tell tableview to use it, like this:
+There will be more *if else* code in the rest datasrouce & delegate methods, especially in the *tableView:cellForRowAtIndexPath:* method. Take a look at the code in *BadTableViewController* in the demo for more details. 
+We can see the problem here. There are so many hardcode things and duplicate code. What we need is to use a model to hold all the logic and only use the model in these delegate & datasource methods.  That is what the *SigmaTableViewModel* does.
+*SigmaTableViewModel* provides an depth 2 array ***sectionModelArray***. The 1st level is the section, and 2nd level is row. So what we need is to create this array and tell tableview to use it, like this:
 
 ```objective-c
 - (void)viewDidLoad {
@@ -74,7 +70,6 @@ SigmaTableViewModel provides an depth 2 array ***sectionModelArray***. The 1st l
     [self initDataSource];
     [self.tableView reloadData];
 }
-
 - (void)initDataSource {
     ...
     [self.viewModel.sectionModelArray removeAllObjects];
@@ -105,7 +100,7 @@ SigmaTableViewModel provides an depth 2 array ***sectionModelArray***. The 1st l
     ...
 }
 ```
-Take a look at the code in the class ***GoodTableViewController*** in the demo for more details.  
+Take a look at the code in the *GoodTableViewController* in the demo for more details.  
 
 
 ## Exercise
@@ -125,9 +120,8 @@ Coming soon...
 You can also download the project and copy all files in the *Lib* folder to your project.
 
 ## More Discussions
-
  - SigmaTableViewModel only provides some frequently used functions of UITableViewDataSource & UITableViewDelegate. If you needs more functions, you can subclass it and provide the implementation for those functions. 
- - If we put all code to generate the sectionModelArray in the same method, the method will be very long. So we can put the code to generate different sections in different methods like in the demo. 
+ - If we put all code to generate the sectionModelArray in the same method, the method will be very long. So we can put the code to generate different sections in different methods like the demo. 
  - If the code in those cell's blocks can be reused,  we can put them in some methods and only invoke these methods in those blocks.
  - The block is used frequently in the view model so we have to be careful of the retain cycle. Always use weak-strong dance for safe. In the demo, we use **YZWeak** & **YZStrong** macros to simplify the weak-strong dance code.
 
