@@ -7,7 +7,7 @@
 [![Build Status](https://travis-ci.org/youzan/SigmaTableViewModel.svg?branch=master)](https://travis-ci.org/youzan/SigmaTableViewModel)
 
 ## Description
-An simple view model for building organized and scalable TableViews.
+A simple view model for building organized and scalable TableViews.
 
 ## SigmaTableViewModel vs UITableViewDataSource + UITableViewDelegate
 Apple provides the UITableViewDataSource & UITableViewDelegate to implement the tableview UI, but a big problem is that the UI logic exists in multiple places and there will be lots of duplicate code, especially those complex tableview UIs with different types of cells and dynamic logic.
