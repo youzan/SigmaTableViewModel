@@ -4,14 +4,14 @@
 [![CocoaPods](https://img.shields.io/badge/pod-v1.0.0-blue.svg)](http://cocoapods.org/?q=SigmaTableViewModel)&nbsp;
 [![Platform](https://img.shields.io/badge/platform-ios-yellow.svg)](https://www.apple.com/nl/ios/)&nbsp;
 [![Support](https://img.shields.io/badge/support-iOS%206%2B%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/)&nbsp;
+[![Build Status](https://travis-ci.org/youzan/SigmaTableViewModel.svg?branch=master)](https://travis-ci.org/youzan/SigmaTableViewModel)
 
 ## Description
-
-SigmaTableViewModel is a lightweight view model to help to implement the tableview UI, especially those complex tableviews with different types of cells and dynamic logic.
+An simple view model for building organized and scalable TableViews.
 
 ## SigmaTableViewModel vs UITableViewDataSource + UITableViewDelegate
-Apple provides the UITableViewDataSource & UITableViewDelegate to implement the tableview UI, but a big problem is that the UI logic exists in multiple places and there will be lots of duplicate code.  
-e.g. Let's take a look at a store management UI like this:
+Apple provides the UITableViewDataSource & UITableViewDelegate to implement the tableview UI, but a big problem is that the UI logic exists in multiple places and there will be lots of duplicate code, especially those complex tableview UIs with different types of cells and dynamic logic.
+**e.g.** Let's take a look at a store management UI like this:
 
 <img src="https://github.com/youzan/SigmaTableViewModel/blob/master/images/manager.png" width="300">
 
@@ -134,7 +134,7 @@ If we want to move the *Withdraw* row to the 3rd row in that section, what do we
  2. Add the source files to your Xcode project.
 
 ## More Discussions
- - SigmaTableViewModel only provides some frequently used functions of UITableViewDataSource & UITableViewDelegate. If you needs more functions, you can subclass *YZSTableViewModel* and implemente those functions. 
+ - SigmaTableViewModel only provides some frequently used functions of UITableViewDataSource & UITableViewDelegate. If you needs more functions, you can subclass *YZSTableViewModel* and implement those functions. 
  - If the code in those cell's blocks can be reused,  we can put them in some methods and only invoke these methods in those blocks.
  - The block is used frequently in the view model so we have to be careful about the retain cycle. Always use weak-strong dance for safe. In the demo, we use **YZWeak** & **YZStrong** macros to simplify the weak-strong dance code.
 
