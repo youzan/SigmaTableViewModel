@@ -1,7 +1,7 @@
 # SigmaTableViewModel
 
 [![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/youzan/SigmaTableViewModel/blob/master/LICENSE)&nbsp;
-[![CocoaPods](http://img.shields.io/cocoapods/v/YYKit.svg?style=flat)](http://cocoapods.org/?q=SigmaTableViewModel)&nbsp;
+[![CocoaPods](https://img.shields.io/badge/pod-v1.0.0-green.svg)](http://cocoapods.org/?q=SigmaTableViewModel)&nbsp;
 [![Platform](http://img.shields.io/cocoapods/p/YYKit.svg?style=flat)](https://www.apple.com/nl/ios/)&nbsp;
 [![Support](https://img.shields.io/badge/support-iOS%206%2B%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/)&nbsp;
 
