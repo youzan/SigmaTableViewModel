@@ -21,7 +21,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"";
-    self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     self.viewModel = [[YZSTableViewModel alloc] init];
     self.tableView.delegate = self.viewModel;
     self.tableView.dataSource = self.viewModel;

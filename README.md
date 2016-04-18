@@ -1,5 +1,10 @@
 # SigmaTableViewModel
 
+[![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/youzan/SigmaTableViewModel/blob/master/LICENSE)&nbsp;
+[![CocoaPods](http://img.shields.io/cocoapods/v/YYKit.svg?style=flat)](http://cocoapods.org/?q=SigmaTableViewModel)&nbsp;
+[![Platform](http://img.shields.io/cocoapods/p/YYKit.svg?style=flat)](https://www.apple.com/nl/ios/)&nbsp;
+[![Support](https://img.shields.io/badge/support-iOS%206%2B%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/)&nbsp;
+
 ## Description
 
 SigmaTableViewModel is a lightweight view model to help to implement the tableview UI, especially those complex tableviews with different types of cells and dynamic logic.
@@ -10,7 +15,7 @@ e.g. Let's take a look at a store management UI like this:
 
 <img src="https://github.com/youzan/SigmaTableViewModel/blob/master/images/manager.png" width="300">
 
-2 kinds of users will use this UI, manager and employee. Manager can see all above rows, and employee can only see some of them, like
+2 kinds of users will use this UI, manager and employee. Manager can see all above rows, while employee can only see some of them, like
 
 <img src="https://github.com/youzan/SigmaTableViewModel/blob/master/images/employee.png" width="300">
 
@@ -121,13 +126,15 @@ If we want to move the *Withdraw* row to the 3rd row in that section, what do we
 
 ## Installation
 ### CocoaPods
-Coming soon...
+ 1. Add `pod 'SigmaTableViewModel'` to your Podfile.
+ 2. Run `pod install` or `pod update`.
 
-### Use the source code directly
-You can also download the project and copy all files in the *Lib* folder to your project.
+### Manually
+ 1. Download all the files in the `Lib` subdirectory.
+ 2. Add the source files to your Xcode project.
 
 ## More Discussions
- - SigmaTableViewModel only provides some frequently used functions of UITableViewDataSource & UITableViewDelegate. If you needs more functions, you can subclass *YZSTableViewModel* and provide the implementation for those functions. 
+ - SigmaTableViewModel only provides some frequently used functions of UITableViewDataSource & UITableViewDelegate. If you needs more functions, you can subclass *YZSTableViewModel* and implemente those functions. 
  - If the code in those cell's blocks can be reused,  we can put them in some methods and only invoke these methods in those blocks.
  - The block is used frequently in the view model so we have to be careful about the retain cycle. Always use weak-strong dance for safe. In the demo, we use **YZWeak** & **YZStrong** macros to simplify the weak-strong dance code.
 
