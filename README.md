@@ -143,4 +143,4 @@ If we want to move the *Withdraw* row to the 3rd row in that section, what do we
  - The block is used frequently in the view model so we have to be careful about the retain cycle. Always use weak-strong dance for safe. In the demo, we use **YZWeak** & **YZStrong** macros to simplify the weak-strong dance code.
 
 ## License
-MIT 
+[MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)
