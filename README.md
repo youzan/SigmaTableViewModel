@@ -1,3 +1,11 @@
+<p>
+<a href="https://github.com/youzan/"><img alt="有赞logo" width="36px" src="https://img.yzcdn.cn/public_files/2017/02/09/e84aa8cbbf7852688c86218c1f3bbf17.png" alt="youzan">
+</p></a>
+<p align="center">
+    <img alt="项目logo" width="36px" src="https://github.com/youzan/SigmaTableViewModel/blob/master/images/sigma.png">
+</p>
+<p align="center">A simple view model for building organized and scalable TableViews.</p>
+
 # SigmaTableViewModel
 
 [![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/youzan/SigmaTableViewModel/blob/master/LICENSE)&nbsp;
@@ -5,14 +13,6 @@
 [![Platform](https://img.shields.io/badge/platform-ios-yellow.svg)](https://www.apple.com/nl/ios/)&nbsp;
 [![Support](https://img.shields.io/badge/support-iOS%206%2B%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/)&nbsp;
 [![Build Status](https://travis-ci.org/youzan/SigmaTableViewModel.svg?branch=master)](https://travis-ci.org/youzan/SigmaTableViewModel)
-
-<p>
-<a href="https://github.com/youzan/"><img alt="有赞logo" width="36px" src="https://img.yzcdn.cn/public_files/2017/02/09/e84aa8cbbf7852688c86218c1f3bbf17.png" alt="youzan">
-</p></a>
-<p align="center">
-    <img alt="项目logo" src="https://github.com/youzan/SigmaTableViewModel/blob/master/images/sigma.png">
-</p>
-<p align="center">A simple view model for building organized and scalable TableViews.</p>
 
 ## Description
 A simple view model for building organized and scalable TableViews.
