@@ -12,6 +12,8 @@
 </p>
 <p align="center">A simple view model for building organized and scalable TableViews.</p>
 
+[中文版README](http://www.cocoachina.com/ios/20160428/16002.html)
+
 ## SigmaTableViewModel vs UITableViewDataSource + UITableViewDelegate
 Apple provides the UITableViewDataSource & UITableViewDelegate to implement the tableview UI, but a big problem is that the UI logic exists in multiple places and there will be lots of duplicate code, especially those complex tableview UIs with different types of cells and dynamic logic.
 
